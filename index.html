@@ -251,18 +251,51 @@
         function tick() {
             if (paused) return;
             timeLeft--;
+            
+            // Bruitages de compte à rebours (3 derniers bips plus aigus)
             if (timeLeft > 3) beep(600, 0.05, 0.4);
             else if (timeLeft > 0) beep(880, 0.1, 0.4);
 
+            // ANNONCE DE L'EXERCICE À VENIR (Pendant le repos)
+            // Se déclenche à 7s (soit 3s après le début du repos de 10s)
+            if (phase === 'rest' && timeLeft === 8) {
+                let nextIdx = exIdx + 1;
+                let nextTour = currentTour;
+
+                // Si on arrive au bout des 12 exercices, on prévoit le 1er du tour suivant
+                if (nextIdx > 11) {
+                    nextIdx = 0;
+                    nextTour++;
+                }
+
+                // On annonce uniquement s'il reste un tour à effectuer
+                if (nextTour <= totalTours) {
+                    speak("Prochain exercice : " + EXERCISES[nextIdx]);
+                }
+            }
+
             if (timeLeft <= 0) {
                 if (phase === 'work') {
-                    if (exIdx === 11 && currentTour === totalTours) { finish(); return; }
-                    phase = 'rest'; timeLeft = 10;
-                    beep(440, 0.5, 0.3); speak("Repos.");
+                    // Vérification si c'est la fin du dernier exercice du dernier tour
+                    if (exIdx === 11 && currentTour === totalTours) { 
+                        finish(); 
+                        return; 
+                    }
+                    phase = 'rest'; 
+                    timeLeft = 10;
+                    beep(440, 0.5, 0.3); 
+                    speak("Repos.");
                 } else {
-                    exIdx++; if (exIdx > 11) { exIdx = 0; currentTour++; }
-                    phase = 'work'; timeLeft = 30;
-                    beep(660, 0.5, 0.3); speak(EXERCISES[exIdx]);
+                    // Passage à l'exercice suivant après le repos
+                    exIdx++; 
+                    if (exIdx > 11) { 
+                        exIdx = 0; 
+                        currentTour++; 
+                    }
+                    phase = 'work'; 
+                    timeLeft = 30;
+                    beep(660, 0.5, 0.3); 
+                    speak(EXERCISES[exIdx]);
                 }
             }
             updateUI();
