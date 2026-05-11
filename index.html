@@ -15,6 +15,7 @@
         .subtitle { font-size: 0.75rem; color: #aaa; letter-spacing: 1px; margin-bottom: 16px; text-align: center; }
         .color-pill { display: flex; align-items: center; gap: 7px; background: #16213e; border: 1.5px solid #333; border-radius: 30px; padding: 6px 14px; cursor: pointer; font-size: 0.78rem; color: #ccc; margin-bottom: 20px; }
         .color-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--accent); }
+        
         .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
         .modal-bg.open { display: flex; }
         .modal { background: #16213e; border-radius: 20px; padding: 24px; width: 300px; text-align: center; }
@@ -24,16 +25,18 @@
         .preset { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; }
         .btn-apply { padding: 9px 26px; background: var(--accent); color: #fff; border: none; border-radius: 30px; font-weight: 700; cursor: pointer; }
         .btn-cancel { padding: 9px 20px; background: #333; color: #fff; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; margin-right: 8px; }
+
         main { width: 100%; max-width: 400px; text-align: center; }
         #workout, #done { display: none; }
+        
         .level-title { font-size: 0.75rem; color: #aaa; letter-spacing: 1px; margin-bottom: 16px; text-align: center; }
         .levels { display: flex; gap: 10px; justify-content: center; margin-bottom: 28px; }
         .lvl-btn { padding: 10px; border: 2px solid var(--accent); background: transparent; color: #fff; border-radius: 15px; cursor: pointer; flex: 1; font-size: 0.75rem; transition: background 0.2s; }
         .lvl-btn.active { background: var(--accent); }
         .start-btn { padding: 16px 45px; background: var(--accent); color: #fff; border: none; border-radius: 35px; font-size: 1.1rem; font-weight: 800; cursor: pointer; }
+
         .phase-badge { display: inline-block; padding: 4px 18px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
         .phase-work { background: var(--accent); }
-        .phase-rest { background: #0f3460; }
         .exercise-name { font-size: 1.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; min-height: 70px; display: flex; align-items: center; justify-content: center; line-height: 1.1; }
         .ring-wrap { position: relative; width: 155px; height: 155px; margin: 0 auto 20px; }
         svg.ring { transform: rotate(-90deg); }
@@ -44,10 +47,33 @@
         .ex-dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #333; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; color: #aaa; flex-shrink: 0; }
         .ex-dot.done { background: #27ae60; border-color: #27ae60; color: #fff; }
         .ex-dot.active { background: var(--accent); border-color: var(--accent); color: #fff; transform: scale(1.15); }
-        .controls { display: flex; gap: 12px; justify-content: center; margin-bottom: 60px; }
+        .controls { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
         .ctrl-btn { padding: 12px 28px; border-radius: 30px; border: none; font-weight: 700; cursor: pointer; color: #fff; font-size: 0.85rem; }
         .btn-pause { background: #0f3460; }
         .btn-stop { background: #333; }
+
+    #session-counter {
+    margin: 60px auto;
+    padding: 10px 22px;
+   
+
+    /* GARDE LE RESTE POUR LE STYLE DU TEXTE : */
+    display: inline-block;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    animation: popIn 0.5s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+}
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         footer { position: fixed; bottom: 12px; font-size: 0.6rem; color: #aaa; text-align: center; width: 100%; z-index: 10; }
         footer a { color: var(--accent); text-decoration: none; font-weight: 700; }
     </style>
@@ -70,6 +96,9 @@
                 <button class="lvl-btn" onclick="setLevel(3,this)">🔴 Avancé<br><small>3 tours</small></button>
             </div>
             <button class="start-btn" onclick="startWorkout()">▶ COMMENCER</button>
+            <div style="width: 100%; text-align: center; margin-top: 10px;">
+                <div id="session-counter"></div>
+            </div>
         </section>
 
         <section id="workout">
@@ -162,20 +191,33 @@
             document.documentElement.style.setProperty('--accent', hex);
             const dot = document.getElementById('colorDot'); if (dot) dot.style.background = hex;
             const meta = document.getElementById('theme-color-meta'); if (meta) meta.setAttribute('content', hex);
+            const h1 = document.querySelector('h1'); if (h1) h1.style.color = hex;
         }
 
-        function openModal() { document.getElementById('modalBg').classList.add('open'); drawWheel(parseInt(document.getElementById('lightnessSlider').value)); }
-        function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
-        function applyColor() { setAccent(pendingColor); closeModal(); }
+        function saveUserColor(hex) {
+            localStorage.setItem('hiit-color', hex);
+            setAccent(hex);
+        }
 
-        function drawWheel(l) {
-            const size = 200, cx = 100, cy = 100, r = 98;
-            wheelCtx.clearRect(0,0,size,size);
-            for (let a=0; a<360; a++) {
-                const grad = wheelCtx.createRadialGradient(cx,cy,0,cx,cy,r);
-                grad.addColorStop(0, `hsl(${a},0%,${l}%)`); grad.addColorStop(1, `hsl(${a},100%,${l}%)`);
-                wheelCtx.beginPath(); wheelCtx.moveTo(cx,cy); wheelCtx.arc(cx,cy,r,(a-1)*Math.PI/180,(a+1)*Math.PI/180);
-                wheelCtx.fillStyle = grad; wheelCtx.fill();
+        function applyColor() { 
+            saveUserColor(pendingColor); 
+            closeModal(); 
+        }
+
+        function incrementSessions() {
+            let count = parseInt(localStorage.getItem('hiit-sessions') || '0');
+            localStorage.setItem('hiit-sessions', count + 1);
+            displaySessions();
+        }
+
+        function displaySessions() {
+            const count = localStorage.getItem('hiit-sessions') || '0';
+            const el = document.getElementById('session-counter');
+            if (el && count > 0) {
+                el.style.display = "inline-block";
+                el.innerHTML = `<span>🔥</span> SCORE : ${count} SÉANCE${count > 1 ? 'S' : ''}`;
+            } else if (el) {
+                el.style.display = "none";
             }
         }
 
@@ -190,7 +232,6 @@
             document.getElementById('ringTime').textContent = timeLeft;
 
             const activeColor = isWork ? currentAccent : '#ff00ff';
-
             badge.style.backgroundColor = activeColor;
             badge.textContent = isWork ? 'TRAVAIL' : 'REPOS';
             timerDisplay.style.color = activeColor;
@@ -210,41 +251,18 @@
         function tick() {
             if (paused) return;
             timeLeft--;
-
-            if (timeLeft > 3) {
-                beep(600, 0.05, 0.4);
-            } else if (timeLeft > 0) {
-                beep(880, 0.1, 0.4);
-            }
+            if (timeLeft > 3) beep(600, 0.05, 0.4);
+            else if (timeLeft > 0) beep(880, 0.1, 0.4);
 
             if (timeLeft <= 0) {
                 if (phase === 'work') {
-                    if (exIdx === 11 && currentTour === totalTours) {
-                        finish(); // ✅ correction #3 : return explicite après finish()
-                        return;
-                    }
-                    phase = 'rest';
-                    timeLeft = 10;
-                    beep(440, 0.5, 0.3);
-                    speak("Repos.");
-                    setTimeout(() => {
-                        if (paused) return;
-                        let nextExIdx = exIdx + 1;
-                        let msg = "";
-                        if (nextExIdx < 12) {
-                            msg = "Prochain exercice : " + EXERCISES[nextExIdx];
-                        } else if (currentTour < totalTours) {
-                            msg = "Préparez-vous pour le tour suivant.";
-                        }
-                        if (msg) speak(msg);
-                    }, 2000);
+                    if (exIdx === 11 && currentTour === totalTours) { finish(); return; }
+                    phase = 'rest'; timeLeft = 10;
+                    beep(440, 0.5, 0.3); speak("Repos.");
                 } else {
-                    exIdx++;
-                    if (exIdx > 11) { exIdx = 0; currentTour++; }
-                    phase = 'work';
-                    timeLeft = 30;
-                    beep(660, 0.5, 0.3);
-                    speak(EXERCISES[exIdx]);
+                    exIdx++; if (exIdx > 11) { exIdx = 0; currentTour++; }
+                    phase = 'work'; timeLeft = 30;
+                    beep(660, 0.5, 0.3); speak(EXERCISES[exIdx]);
                 }
             }
             updateUI();
@@ -252,17 +270,17 @@
 
         function startWorkout() {
             initAudio();
+            const scoreBadge = document.getElementById('session-counter');
+            if (scoreBadge) scoreBadge.style.display = 'none';
             document.getElementById('setup').style.display = 'none';
             document.getElementById('workout').style.display = 'block';
             exIdx = 0; currentTour = 1; phase = 'work'; timeLeft = 30;
-            updateUI();
-            beep(660, 0.5); speak(EXERCISES[0]);
+            updateUI(); beep(660, 0.5); speak(EXERCISES[0]);
             interval = setInterval(tick, 1000);
         }
 
         function togglePause() {
             paused = !paused;
-            initAudio();
             document.getElementById('pauseBtn').textContent = paused ? '▶ Reprendre' : '⏸ Pause';
         }
 
@@ -270,30 +288,44 @@
 
         function finish() {
             clearInterval(interval);
-            // ✅ correction #4 : affichage du résumé dans #doneMsg
+            incrementSessions();
             document.getElementById('doneMsg').textContent =
                 `${totalTours} tour${totalTours > 1 ? 's' : ''} · 12 exercices · ${totalTours * 7} min`;
             document.getElementById('workout').style.display = 'none';
             document.getElementById('done').style.display = 'block';
+            const scoreBadge = document.getElementById('session-counter');
+            if (scoreBadge) scoreBadge.style.display = 'none';
             beep(880, 0.8);
             speak("Bravo, séance terminée");
         }
 
         function restart() {
-            document.getElementById('doneMsg').textContent = ''; // reset propre
             document.getElementById('done').style.display = 'none';
             document.getElementById('workout').style.display = 'none';
             document.getElementById('setup').style.display = 'block';
+            displaySessions();
+        }
+
+        function openModal() { document.getElementById('modalBg').classList.add('open'); drawWheel(parseInt(document.getElementById('lightnessSlider').value)); }
+        function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
+
+        function drawWheel(l) {
+            const size = 200, cx = 100, cy = 100, r = 98;
+            wheelCtx.clearRect(0,0,size,size);
+            for (let a=0; a<360; a++) {
+                const grad = wheelCtx.createRadialGradient(cx,cy,0,cx,cy,r);
+                grad.addColorStop(0, `hsl(${a},0%,${l}%)`); grad.addColorStop(1, `hsl(${a},100%,${l}%)`);
+                wheelCtx.beginPath(); wheelCtx.moveTo(cx,cy); wheelCtx.arc(cx,cy,r,(a-1)*Math.PI/180,(a+1)*Math.PI/180);
+                wheelCtx.fillStyle = grad; wheelCtx.fill();
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             wheelCtx = document.getElementById('wheelCanvas').getContext('2d');
-
-            // ✅ correction #6 : le slider redessine la roue
-            document.getElementById('lightnessSlider').addEventListener('input', (e) => {
-                drawWheel(parseInt(e.target.value));
-            });
-
+            const savedColor = localStorage.getItem('hiit-color');
+            if (savedColor) setAccent(savedColor);
+            displaySessions();
+            document.getElementById('lightnessSlider').addEventListener('input', (e) => drawWheel(parseInt(e.target.value)));
             document.getElementById('wheelCanvas').addEventListener('pointerdown', (e) => {
                 const rect = e.target.getBoundingClientRect();
                 const px = wheelCtx.getImageData(e.clientX - rect.left, e.clientY - rect.top, 1, 1).data;
@@ -302,27 +334,16 @@
                     document.getElementById('previewSwatch').style.background = pendingColor;
                 }
             });
-
             const pWrap = document.getElementById('presets');
             PRESETS.forEach(c => {
                 const d = document.createElement('div'); d.className = 'preset'; d.style.background = c;
                 d.onclick = () => { pendingColor = c; document.getElementById('previewSwatch').style.background = c; };
                 pWrap.appendChild(d);
             });
-
-            setAccent(currentAccent);
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/nano-hiit/sw.js').catch(err => console.log('SW Error', err));
+            }
         });
     </script>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/nano-hiit/sw.js')
-                    .then(reg => console.log('SW enregistré !', reg))
-                    .catch(err => console.log('Erreur SW', err));
-            });
-        }
-    </script>
-
 </body>
 </html>
