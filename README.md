@@ -31,7 +31,7 @@ Cette application est une application web statique hébergée sur GitHub Pages.
 
 ## 📄 Licence
 
-Ce projet est sous licence **MIT**. Vous pouvez l'utiliser librement pour vos propres besoins.
+Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails. Vous pouvez l'utiliser librement pour vos propres besoins.
 
 --
 
