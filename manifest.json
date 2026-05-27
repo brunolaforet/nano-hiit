@@ -10,6 +10,6 @@
   "background_color": "#1a1a2e",
   "display": "standalone",
   "scope": "/nano-hiit/",
-  "theme_color": "#00bcd4",
+  "theme_color": "#e94560",
   "description": "Entraînement HIIT de 7 minutes ultra-léger et autonome."
 }
