@@ -2,9 +2,9 @@
 🏃 Nano-HIIT : 7 min de sport intensif. Nano App &lt;100Ko • 100% FREE SANS Pub SANS Cookie • ✈️ OK
 
 
-# 🏃 Nano-HIIT
+# 🏃 nano-HIIT
 
-**Nano-HIIT** est une application d'entraînement fractionné de haute intensité (HIIT) ultra-légère, conçue pour être rapide, autonome et respectueuse de votre vie privée.
+**nano-HIIT** est une application d'entraînement fractionné de haute intensité (HIIT) ultra-légère, conçue pour être rapide, autonome et respectueuse de votre vie privée.
 
 ## ✨ Caractéristiques
 
