@@ -33,6 +33,18 @@ Cette application est une application web statique hébergée sur GitHub Pages.
 
 Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails. Vous pouvez l'utiliser librement pour vos propres besoins.
 
+## 🔒 Vie privée (No Cookie, No Ads, No Data)
+
+Cette application est garantie **Application autonome (standalone) et respectueuse de votre vie privée** :
+* **Aucune donnée collectée :** L'application fonctionne entièrement dans votre navigateur. Aucune donnée n'est stockée, traitée ou envoyée vers un serveur externe.
+* **Zéro cookie & Zéro pub :** Aucun script de traçage ou publicitaire n'est présent.
+* *Note sur le fichier `googleXXXXXXXX.html` :* Ce fichier sert uniquement à valider la propriété du site sur Google Search Console pour son référencement. Il est totalement passif et n'intervient pas dans le fonctionnement de l'application.
+
+Si vous copiez (fork) ce projet pour le déployer ailleurs, vous pouvez le supprimer sans problème.
+
+## 💬 Des questions ?
+Si vous avez des questions sur le code ou si vous souhaitez simplement échanger, n'hésitez pas à ouvrir une *Issue* sur ce dépôt GitHub. C'est toujours un plaisir d'échanger avec la communauté !
+
 --
 
 Note : Une connexion initiale est requise pour la mise en cache. Si vous supprimez manuellement les données de votre navigateur, une reconnexion sera nécessaire pour réactiver le mode hors-ligne.
