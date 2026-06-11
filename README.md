@@ -3,6 +3,8 @@
 **L'entraînement fractionné de 7 minutes, version ultra-légère.**  
 *Nano App < 100 Ko • 100% Hors-ligne • Zéro Pub • Zéro Cookie • Open Source*
 
+👉 App : [brunolaforet.github.io/nano-hiit/](https://brunolaforet.github.io/nano-hiit/)
+
 ---
 
 ### ⏱️ **Le protocole HIIT en 7 Minutes**
