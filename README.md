@@ -5,6 +5,19 @@
 
 ---
 
+### ⏱️ **Le protocole HIIT en 7 Minutes**
+
+Inspiré du célèbre *7-Minute Workout*, ce programme d'entraînement fractionné de haute intensité (HIIT) est conçu pour maximiser les bénéfices cardiovasculaires et musculaires en un temps record.
+
+* **30" d'exercice :** Phase d'effort à haute intensité pour solliciter le système cardiovasculaire et renforcer un groupe musculaire ciblé.
+* **10" de repos :** Temps de récupération ultra-court permettant une transition rapide tout en maintenant le rythme cardiaque élevé.
+* **12 exercices :** Un cycle complet combinant exercices cardiovasculaires et renforcements au poids du corps, sans aucun matériel.
+
+---
+
+
+
+
 ## ✨ Points Forts
 * **Ultra-légère :** Moins de 100 Ko au total.
 * **100% Autonome :** Fonctionne en Mode Avion (PWA) après la première ouverture.
