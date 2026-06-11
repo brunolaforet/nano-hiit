@@ -1,6 +1,7 @@
 # 🏃 nano-HIIT
 
-**L'entraînement fractionné de 7 minutes, version ultra-légère.** *Nano App < 100 Ko • 100% Hors-ligne • Zéro Pub • Zéro Cookie • Open Source*
+**L'entraînement fractionné de 7 minutes, version ultra-légère.**  
+*Nano App < 100 Ko • 100% Hors-ligne • Zéro Pub • Zéro Cookie • Open Source*
 
 ---
 
