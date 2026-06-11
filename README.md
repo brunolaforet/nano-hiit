@@ -7,8 +7,9 @@
 
 ### ⏱️ **Le protocole HIIT en 7 Minutes**
 
-Inspiré du célèbre *7-Minute Workout*, ce programme d'entraînement fractionné de haute intensité (HIIT) est conçu pour maximiser les bénéfices cardiovasculaires et musculaires en un temps record.
+Inspiré du célèbre *7-Minute Workout* (publié par l'American College of Sports Medicine), ce programme d'entraînement fractionné de haute intensité (HIIT) est conçu pour maximiser les bénéfices cardiovasculaires et musculaires en un temps record.
 
+* **🔥 Travail en anaérobie :** Sa véritable valeur ajoutée. L'intensité élevée pousse le corps dans ses retranchements énergétiques sans apport d'oxygène suffisant, stimulant la dégradation des sucres, développant l'endurance de force et déclenchant l'*Afterburn Effect* (combustion calorique post-effort).
 * **30" d'exercice :** Phase d'effort à haute intensité pour solliciter le système cardiovasculaire et renforcer un groupe musculaire ciblé.
 * **10" de repos :** Temps de récupération ultra-court permettant une transition rapide tout en maintenant le rythme cardiaque élevé.
 * **12 exercices :** Un cycle complet combinant exercices cardiovasculaires et renforcements au poids du corps, sans aucun matériel.
