@@ -1,15 +1,17 @@
 {
   "short_name": "HIIT 7min",
   "name": "7 Minute Workout - HIIT",
+"description": "Entraînement HIIT de 7 minutes ultra-léger et autonome.",
   "icons": [
     { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
     { "src": "icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
   ],
   "start_url": "/nano-hiit/index.html",
-  "background_color": "#1a1a2e",
-  "display": "standalone",
   "scope": "/nano-hiit/",
+  "background_color": "#1a1a2e",
   "theme_color": "#e94560",
-  "description": "Entraînement HIIT de 7 minutes ultra-léger et autonome."
+  "display": "standalone",
+  "orientation": "portrait"
+  
 }
