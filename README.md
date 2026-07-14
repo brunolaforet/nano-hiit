@@ -1,7 +1,7 @@
 # 🏃 nano-HIIT
 
 **L'entraînement fractionné de 7 minutes, version ultra-légère.**  
-*Nano App < 100 Ko • 100% Hors-ligne • Zéro Pub • Zéro Cookie • Open Source*
+*Nano App < 100 Ko • 100% Hors-ligne • Zéro Pub régie • Zéro Tracker • Zéro Cookie • Zéro Inscription • Open Source licence MIT
 
 👉 App : [brunolaforet.github.io/nano-hiit/](https://brunolaforet.github.io/nano-hiit/)
 
@@ -24,7 +24,7 @@ Inspiré du célèbre *7-Minute Workout* (publié par l'American College of Spor
 ## ✨ Points Forts
 * **Ultra-légère :** Moins de 100 Ko au total.
 * **100% Autonome :** Fonctionne en Mode Avion (PWA) après la première ouverture.
-* **Confidentialité totale :** Pas d'inscription, pas de cookies, pas de tracking.
+* **Confidentialité totale :** Pas d'inscription, pas de pub régie, pas de cookie, pas de tracking.
 * **Esprit Open Source :** Code minimaliste, lisible et sous licence MIT.
 
 ## 📲 Installation Rapide
