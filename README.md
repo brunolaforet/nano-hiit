@@ -1,6 +1,6 @@
 # 🏃 nano-HIIT
 
-**L'entraînement fractionné de 7 minutes, version ultra-légère.**  
+**Training anaérobie intensif et fractionné de 7 minutes, version ultra-légère.**  
 *Nano App < 100 Ko • 100% Hors-ligne • Zéro Pub régie • Zéro Tracker • Zéro Cookie • Zéro Inscription • Open Source licence MIT
 
 👉 App : [brunolaforet.github.io/nano-hiit/](https://brunolaforet.github.io/nano-hiit/)
